@@ -17,6 +17,7 @@ return {
       require('mini.statusline').setup()
       require('mini.surround').setup()
       require('mini.trailspace').setup()
+      require('mini.visits').setup()
 
       local gen_ai_spec = require('mini.extra').gen_ai_spec
       require('mini.ai').setup{
@@ -215,6 +216,31 @@ return {
       map('n', '<Leader>gh', '<Cmd> lua MiniExtra.pickers.git_hunks({})<CR>', {desc='Pick Git Hunks'})
       map('n', '<Leader>q', '<Cmd> lua MiniExtra.pickers.list({ scope = "quickfix" })<CR>', {desc='Pick Quickfix List'})
       map('n', '<Leader>rg', '<Cmd> lua MiniPick.builtin.grep_live()<CR>', {desc='Pick Grep'})
+
+      -- mini.visits
+      map('n', '<Leader>va', '<Cmd> lua MiniVisits.add_label()<CR>', { desc = 'Add Label' })
+      map('n', '<Leader>vA', '<Cmd> lua MiniVisits.add_label("core")<CR>', { desc = 'Add Label Core' })
+      map('n', '<Leader>vr', '<Cmd> lua MiniVisits.remove_label()<CR>', { desc = 'Remove Label' })
+      map('n', '<Leader>vR', '<Cmd> lua MiniVisits.remove_label("core")<CR>', { desc = 'Remove Label Core' })
+      map('n', '<Leader>vc', '<Cmd> lua MiniVisits.select_path("", { filter = "core" })<CR>', { desc = 'List Visit Path Core' })
+      map('n', '<Leader>vC', '<Cmd> lua MiniVisits.select_path(nil, { filter = "core" })<CR>', { desc = 'List Visit Path cwd' })
+      map('n', '<Leader>vl', '<Cmd> lua MiniExtra.pickers.visit_labels()<CR>', {desc='Pick Visit Label'})
+      map('n', '<Leader>vL', '<Cmd> lua MiniExtra.pickers.visit_paths()<CR>', {desc='Pick Visit Paths'})
+
+      -- Iterate based on recency
+      local sort_latest = MiniVisits.gen_sort.default({ recency_weight = 1 })
+      local map_iterate_core = function(lhs, direction, desc)
+        local opts = { filter = 'core', sort = sort_latest, wrap = true }
+        local rhs = function()
+          MiniVisits.iterate_paths(direction, vim.fn.getcwd(), opts)
+        end
+        vim.keymap.set('n', lhs, rhs, { desc = desc })
+      end
+
+      map_iterate_core('[V', 'last',     'Core label (earliest)')
+      map_iterate_core('[v', 'forward',  'Core label (earlier)')
+      map_iterate_core(']v', 'backward', 'Core label (later)')
+      map_iterate_core(']V', 'first',    'Core label (latest)')
 
       -- mini.trailspace
       map('n', '<Leader>t', '<Cmd>lua MiniTrailspace.trim()<CR>', {desc='Trim trailing space'})
