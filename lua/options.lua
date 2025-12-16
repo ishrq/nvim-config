@@ -8,38 +8,38 @@ vim.o.statuscolumn   = "%l%s"
 vim.o.scrolloff      = 8
 
 --WHITESPACE
-vim.o.expandtab      = true
-vim.o.shiftwidth     = 2
-vim.o.softtabstop    = 2
-vim.o.tabstop        = 2
+vim.o.expandtab   = true
+vim.o.shiftwidth  = 2
+vim.o.softtabstop = 2
+vim.o.tabstop     = 2
 
 --WRAP
-vim.o.lbr            = true
-vim.o.wrap           = true
-vim.o.whichwrap      = '<,>,h,l' --move up/down at line-end
+vim.o.lbr       = true
+vim.o.wrap      = true
+vim.o.whichwrap = '<,>,h,l' --move up/down at line-end
 
 --FOLD
-vim.o.foldlevel      = 99
-vim.o.foldmethod     = 'indent' --manual, indent, syntax, expr, marker
+vim.o.foldlevel  = 99
+vim.o.foldmethod = 'indent' --manual, indent, syntax, expr, marker
 
 --HISTORY
-vim.o.swapfile       = false
+vim.o.swapfile = false
 
 --GENERAL
-vim.o.autoread       = true
-vim.o.grepprg        = 'rg' --default grep
-vim.o.lazyredraw     = true
-vim.o.spell          = true
-vim.o.spellsuggest   = 'best,5'
-vim.o.updatetime     = 50  --decrease update time
+vim.o.autoread     = true
+vim.o.grepprg      = 'rg' --default grep
+vim.o.lazyredraw   = true
+vim.o.spell        = true
+vim.o.spellsuggest = 'best,5'
+vim.o.updatetime   = 50  --decrease update time
 
 --DISABLE BUILT-IN
-vim.g.loaded_gzip = 1
-vim.g.loaded_netrwPlugin = 1
-vim.g.loaded_tarPlugin = 1
+vim.g.loaded_gzip         = 1
+vim.g.loaded_netrwPlugin  = 1
+vim.g.loaded_tarPlugin    = 1
 vim.g.loaded_2html_plugin = 1
-vim.g.loaded_tutor = 1
-vim.g.loaded_zipPlugin = 1
+vim.g.loaded_tutor        = 1
+vim.g.loaded_zipPlugin    = 1
 
 --From https://this-week-in-neovim.org/2023/Jan/9
 local ns = vim.api.nvim_create_namespace('toggle_hlsearch')
