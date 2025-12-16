@@ -1,10 +1,7 @@
-local is_arch = vim.fn.hostname() == 'arch'
-
 return {
   {
     -- https://github.com/neovim/nvim-lspconfig
     'neovim/nvim-lspconfig',
-    cond = is_arch,
     dependencies = {
       {
         -- https://github.com/mason-org/mason.nvim
@@ -37,7 +34,6 @@ return {
   {
     -- https://github.com/nvimtools/none-ls.nvim
     'nvimtools/none-ls.nvim',
-    cond = is_arch,
     event = { 'BufReadPre', 'BufNewFile' },
     opts = function()
       local b = require('null-ls').builtins

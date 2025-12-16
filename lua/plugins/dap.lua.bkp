@@ -2,7 +2,6 @@
 --   -- https://github.com/mfussenegger/nvim-dap
 --   {
 --     'mfussenegger/nvim-dap',
---     cond = vim.fn.hostname() == "arch",
 --     dependencies = {
 --       {
 --         {

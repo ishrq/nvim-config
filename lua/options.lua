@@ -5,12 +5,7 @@ vim.o.sidescrolloff  = 4
 vim.o.numberwidth    = 3
 vim.o.signcolumn     = "yes:1"
 vim.o.statuscolumn   = "%l%s"
-
-if vim.fn.hostname() == 'arch' then
-  vim.o.scrolloff      = 8
-else
-  vim.o.scrolloff      = 4
-end
+vim.o.scrolloff      = 8
 
 --WHITESPACE
 vim.o.expandtab      = true

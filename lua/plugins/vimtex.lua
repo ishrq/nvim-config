@@ -2,7 +2,6 @@ return {
   -- https://github.com/lervag/vimtex
   {
     'lervag/vimtex',
-    cond = vim.fn.hostname() == "arch",
     ft = {'tex'},
     init = function()
       vim.g.tex_flavor = 'latex'

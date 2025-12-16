@@ -13,7 +13,6 @@ return{
   -- https://github.com/NvChad/nvim-colorizer.lua
   {
     'NvChad/nvim-colorizer.lua',
-    cond = vim.fn.hostname() == "arch",
     cmd = 'ColorizerToggle',
     config = function ()
       require('colorizer').setup {
