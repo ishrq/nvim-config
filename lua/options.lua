@@ -1,26 +1,16 @@
 -- Some options are enabled through mini.basics
 
 --CONTEXT
-vim.o.colorcolumn    = ''
-vim.o.list           = false
-vim.o.relativenumber = true
-vim.o.ruler          = true
 vim.o.sidescrolloff  = 4
-vim.o.syntax         = 'on'
 vim.o.numberwidth    = 3
 vim.o.signcolumn     = "yes:1"
 vim.o.statuscolumn   = "%l%s"
-vim.o.pumheight      = 10
 
 if vim.fn.hostname() == 'arch' then
   vim.o.scrolloff      = 8
 else
   vim.o.scrolloff      = 4
 end
-
---FILETYPE
-vim.o.encoding       = 'utf-8'
-vim.o.fileencoding   = 'utf-8'
 
 --WHITESPACE
 vim.o.expandtab      = true
@@ -34,24 +24,18 @@ vim.o.wrap           = true
 vim.o.whichwrap      = '<,>,h,l' --move up/down at line-end
 
 --FOLD
-vim.o.foldenable     = true
 vim.o.foldlevel      = 99
 vim.o.foldmethod     = 'indent' --manual, indent, syntax, expr, marker
 
 --HISTORY
 vim.o.swapfile       = false
-vim.o.undodir        = os.getenv("HOME") .. "/.config/nvim/.undo-history/"
 
 --GENERAL
 vim.o.autoread       = true
-vim.o.ch             = 1 --commandbar height
 vim.o.grepprg        = 'rg' --default grep
 vim.o.lazyredraw     = true
-vim.o.ls             = 2 --statusbar height
 vim.o.spell          = true
 vim.o.spellsuggest   = 'best,5'
-vim.o.showmatch      = true
-vim.o.timeoutlen     = 1000  --key timeout
 vim.o.updatetime     = 50  --decrease update time
 
 --DISABLE BUILT-IN

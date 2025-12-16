@@ -98,12 +98,12 @@ autocmd({ 'BufEnter', 'FocusGained', 'InsertLeave' }, {
   callback = function() vim.wo.relativenumber = true end,
   group = numbertogglegroup,
 })
+
 autocmd({ 'BufLeave', 'FocusLost', 'InsertEnter' }, {
   pattern = '*',
   callback = function() vim.wo.relativenumber = false end,
   group = numbertogglegroup,
 })
-
 
 -- Highlights
 

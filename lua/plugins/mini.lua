@@ -40,7 +40,7 @@ return {
       require('mini.basics').setup({
         options = {
           basic = true,
-          extra_ui = false,
+          extra_ui = true,
           win_borders = 'default',
         },
         mappings = {
@@ -65,42 +65,39 @@ return {
         yank       = { suffix = '' },
       }
 
+      local gen_clues = require('mini.clue').gen_clues
+      require('mini.clue').setup{
+        window = {
+          delay = 500,
+        },
+        triggers = {
+          { mode = 'n', keys = '<Leader>' },
+          { mode = 'x', keys = '<Leader>' },
+          { mode = 'i', keys = '<C-x>' },
+          { mode = 'n', keys = 'g' },
+          { mode = 'x', keys = 'g' },
+          { mode = 'n', keys = "'" },
+          { mode = 'n', keys = '`' },
+          { mode = 'x', keys = "'" },
+          { mode = 'x', keys = '`' },
+          { mode = 'n', keys = '"' },
+          { mode = 'x', keys = '"' },
+          { mode = 'i', keys = '<C-r>' },
+          { mode = 'c', keys = '<C-r>' },
+          { mode = 'n', keys = '<C-w>' },
+          { mode = 'n', keys = 'z' },
+          { mode = 'x', keys = 'z' },
+        },
 
-      if vim.fn.hostname() == "arch" then
-        local gen_clues = require('mini.clue').gen_clues
-        require('mini.clue').setup{
-          window = {
-            delay = 500,
-          },
-          triggers = {
-            { mode = 'n', keys = '<Leader>' },
-            { mode = 'x', keys = '<Leader>' },
-            { mode = 'i', keys = '<C-x>' },
-            { mode = 'n', keys = 'g' },
-            { mode = 'x', keys = 'g' },
-            { mode = 'n', keys = "'" },
-            { mode = 'n', keys = '`' },
-            { mode = 'x', keys = "'" },
-            { mode = 'x', keys = '`' },
-            { mode = 'n', keys = '"' },
-            { mode = 'x', keys = '"' },
-            { mode = 'i', keys = '<C-r>' },
-            { mode = 'c', keys = '<C-r>' },
-            { mode = 'n', keys = '<C-w>' },
-            { mode = 'n', keys = 'z' },
-            { mode = 'x', keys = 'z' },
-          },
-
-          clues = {
-            gen_clues.builtin_completion(),
-            gen_clues.g(),
-            gen_clues.marks(),
-            gen_clues.registers(),
-            gen_clues.windows(),
-            gen_clues.z(),
-          },
-        }
-      end
+        clues = {
+          gen_clues.builtin_completion(),
+          gen_clues.g(),
+          gen_clues.marks(),
+          gen_clues.registers(),
+          gen_clues.windows(),
+          gen_clues.z(),
+        },
+      }
 
       require('mini.diff').setup{
         view = {
@@ -110,9 +107,7 @@ return {
       }
 
       local hex_clr = {}
-      if vim.fn.hostname() == "arch" then
-        hex_clr = require('mini.hipatterns').gen_highlighter.hex_color()
-      end
+      hex_clr = require('mini.hipatterns').gen_highlighter.hex_color()
 
       require('mini.hipatterns').setup{
         highlighters = {
@@ -174,67 +169,63 @@ return {
       require('mini.keymap').setup()
 
       --Tab completion
-      local map_multistep = require('mini.keymap').map_multistep
-      map_multistep('i', '<Tab>',   { 'pmenu_next' })
-      map_multistep('i', '<S-Tab>', { 'pmenu_prev' })
-      map_multistep('i', '<CR>',    { 'pmenu_accept', 'minipairs_cr' })
-      map_multistep('i', '<BS>',    { 'minipairs_bs' })
+      local mk = require('mini.keymap')
+      mk.map_multistep('i', '<Tab>',   { 'pmenu_next' })
+      mk.map_multistep('i', '<S-Tab>', { 'pmenu_prev' })
+      mk.map_multistep('i', '<CR>',    { 'pmenu_accept', 'minipairs_cr' })
+      mk.map_multistep('i', '<BS>',    { 'minipairs_bs' })
 
       --Lazy navigation
-      if vim.fn.hostname() == "arch" then
-        local notify_many_keys = function(key)
-          local lhs = string.rep(key, 7)
-          local action = function() vim.notify('Too many ' .. key) end
-          require('mini.keymap').map_combo({ 'n', 'x' }, lhs, action)
-        end
-        notify_many_keys('h')
-        notify_many_keys('j')
-        notify_many_keys('k')
-        notify_many_keys('l')
+      local notify_many_keys = function(key)
+        local lhs = string.rep(key, 7)
+        local action = function() vim.notify('Too many ' .. key) end
+        require('mini.keymap').map_combo({ 'n', 'x' }, lhs, action)
       end
+      notify_many_keys('h')
+      notify_many_keys('j')
+      notify_many_keys('k')
+      notify_many_keys('l')
 
-      if vim.fn.hostname() == "arch" then
-        require('mini.notify').setup{
-          lsp_progress = {
-            enable = false,
-          }
+      require('mini.notify').setup{
+        lsp_progress = {
+          enable = false,
         }
-        vim.notify = require('mini.notify').make_notify()
-      end
+      }
+      vim.notify = require('mini.notify').make_notify()
 
-    local map = vim.keymap.set
+      local map = vim.keymap.set
 
-    -- mini.basic
-    map({ 'n', 'i', 'x' }, '<C-s>', '<Nop>')
+      -- mini.basic
+      map({ 'n', 'i', 'x' }, '<C-s>', '<Nop>')
 
-    --- mini.diff
-    map('n', '<Leader>hp', '<Cmd>lua MiniDiff.toggle_overlay()<CR>', {desc='Hunk Preview'})
+      --- mini.diff
+      map('n', '<Leader>hp', '<Cmd> lua MiniDiff.toggle_overlay()<CR>', {desc='Hunk Preview'})
 
-    -- mini.pick / mini.extra
-    map('n', '<Leader>1', '<Cmd>lua MiniExtra.pickers.oldfiles()<CR>', {desc='Pick Recent Files'})
-    map('n', '<Leader>D', '<Cmd>lua MiniExtra.pickers.diagnostic()<CR>', {desc='Pick Diagnostics'})
-    map('n', '<Leader>e', '<Cmd>lua MiniExtra.pickers.explorer()<CR>', {desc='Pick Explorer'})
-    map('n', '<Leader>:', '<Cmd>lua MiniExtra.pickers.history()<CR>', {desc='Pick Command History'})
-    map('n', '<Leader>fd', '<Cmd>lua MiniPick.builtin.files()<CR>', {desc='Pick Find Files'})
-    map('n', '<Leader>gb', '<Cmd>lua MiniExtra.pickers.git_branches()<CR>', {desc='Pick Git Branches'})
-    map('n', '<Leader>gB', '<Cmd>lua MiniExtra.pickers.git_branches({ scope = "local" })<CR>', {desc='Pick Git Local Branches'})
-    map('n', '<Leader>gc', '<Cmd>lua MiniExtra.pickers.git_commits()<CR>', {desc='Pick Git Commits'})
-    map('n', '<Leader>gf', '<Cmd>lua MiniExtra.pickers.git_files()<CR>', {desc='Pick Git Files'})
-    map('n', '<Leader>gF', '<Cmd>lua MiniExtra.pickers.git_files({ scope="modified" })<CR>', {desc='Pick Git Modified Files'})
-    map('n', '<Leader>gh', '<Cmd>lua MiniExtra.pickers.git_hunks({})<CR>', {desc='Pick Git Hunks'})
-    map('n', '<Leader>q', '<Cmd>lua MiniExtra.pickers.list({ scope = "quickfix" })<CR>', {desc='Pick Quickfix List'})
-    map('n', '<Leader>rg', '<Cmd>lua MiniPick.builtin.grep_live()<CR>', {desc='Pick Grep'})
+      -- mini.pick / mini.extra
+      map('n', '<Leader>1', '<Cmd> lua MiniExtra.pickers.oldfiles()<CR>', {desc='Pick Recent Files'})
+      map('n', '<Leader>D', '<Cmd> lua MiniExtra.pickers.diagnostic()<CR>', {desc='Pick Diagnostics'})
+      map('n', '<Leader>e', '<Cmd> lua MiniExtra.pickers.explorer()<CR>', {desc='Pick Explorer'})
+      map('n', '<Leader>:', '<Cmd> lua MiniExtra.pickers.history()<CR>', {desc='Pick Command History'})
+      map('n', '<Leader>fd', '<Cmd> lua MiniPick.builtin.files()<CR>', {desc='Pick Find Files'})
+      map('n', '<Leader>gb', '<Cmd> lua MiniExtra.pickers.git_branches()<CR>', {desc='Pick Git Branches'})
+      map('n', '<Leader>gB', '<Cmd> lua MiniExtra.pickers.git_branches({ scope = "local" })<CR>', {desc='Pick Git Local Branches'})
+      map('n', '<Leader>gc', '<Cmd> lua MiniExtra.pickers.git_commits()<CR>', {desc='Pick Git Commits'})
+      map('n', '<Leader>gf', '<Cmd> lua MiniExtra.pickers.git_files()<CR>', {desc='Pick Git Files'})
+      map('n', '<Leader>gF', '<Cmd> lua MiniExtra.pickers.git_files({ scope="modified" })<CR>', {desc='Pick Git Modified Files'})
+      map('n', '<Leader>gh', '<Cmd> lua MiniExtra.pickers.git_hunks({})<CR>', {desc='Pick Git Hunks'})
+      map('n', '<Leader>q', '<Cmd> lua MiniExtra.pickers.list({ scope = "quickfix" })<CR>', {desc='Pick Quickfix List'})
+      map('n', '<Leader>rg', '<Cmd> lua MiniPick.builtin.grep_live()<CR>', {desc='Pick Grep'})
 
-    -- mini.trailspace
-    map('n', '<Leader>t', '<Cmd>lua MiniTrailspace.trim()<CR>', {desc='Trim trailing space'})
-    map('n', '<Leader>T', '<Cmd>lua MiniTrailspace.trim_last_lines()<CR>', {desc='Trim trailing lines'})
+      -- mini.trailspace
+      map('n', '<Leader>t', '<Cmd>lua MiniTrailspace.trim()<CR>', {desc='Trim trailing space'})
+      map('n', '<Leader>T', '<Cmd>lua MiniTrailspace.trim_last_lines()<CR>', {desc='Trim trailing lines'})
 
-    -- mini.ai
-    local nxo = {'n','x','o'}
-    map(nxo, ']a', "<Cmd>lua MiniAi.move_cursor('left', 'i', 'a')<CR>", {desc='Next argument'})
-    map(nxo, '[a', "<Cmd>lua MiniAi.move_cursor('left', 'i', 'a', {search_method='prev'})<CR>", {desc='Previous argument'})
-    map(nxo, ']F', "<Cmd>lua MiniAi.move_cursor('left', 'i', 'f')<CR>", {desc='Next function'})
-    map(nxo, '[F', "<Cmd>lua MiniAi.move_cursor('left', 'i', 'f', {search_method='prev'})<CR>", {desc='Previous function'})
+      -- mini.ai
+      local nxo = {'n','x','o'}
+      map(nxo, ']a', "MiniAi.move_cursor('left', 'i', 'a')", {desc='Next argument'})
+      map(nxo, '[a', "MiniAi.move_cursor('left', 'i', 'a', {search_method='prev'})", {desc='Previous argument'})
+      map(nxo, ']F', "MiniAi.move_cursor('left', 'i', 'f')", {desc='Next function'})
+      map(nxo, '[F', "MiniAi.move_cursor('left', 'i', 'f', {search_method='prev'})", {desc='Previous function'})
 
     end
   }

@@ -7,8 +7,8 @@ local map = vim.keymap.set
 
 -- General
 map('n', '<Leader>=', ':set spell!<CR>', { desc = 'Toggle spell check' })
-map('n', '<Leader>8', ':execute "set cc=" . (&cc == "" ? "80" : "")<CR>', { desc = 'Toggle character column', noremap = true, silent = true})
-map('n', 'X', ':keeppatterns substitute/\\s*\\%#\\s*/\\r/e <bar> normal! ==^<CR>', { desc = 'Split line', noremap = true, silent = true })
+map('n', '<Leader>8', ':execute "set cc=" . (&cc == "" ? "80" : "")<CR>', { desc = 'Toggle character column', silent = true})
+map('n', 'X', ':keeppatterns substitute/\\s*\\%#\\s*/\\r/e <bar> normal! ==^<CR>', { desc = 'Split line', silent = true })
 map('i', '<C-z>', '<C-g>u<Esc>[S1z=`]a<C-g>u', { desc = 'Fix last spelling' })
 
 -- Better indenting
