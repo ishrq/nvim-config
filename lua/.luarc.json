@@ -1,0 +1,20 @@
+{
+    "workspace.library": [
+        "/home/ia/.config/nvim",
+        "/home/ia/.local/share/nvim/lazy/lazy.nvim",
+        "/home/ia/.local/share/nvim/lazy/mason.nvim",
+        "/home/ia/.local/share/nvim/lazy/mason-lspconfig.nvim",
+        "/home/ia/.local/share/nvim/lazy/cmp-nvim-lsp",
+        "/home/ia/.local/share/nvim/lazy/nvim-lspconfig",
+        "/home/ia/.local/share/nvim/lazy/null-ls.nvim",
+        "/home/ia/.local/share/nvim/lazy/colorbuddy.nvim",
+        "/home/ia/.local/share/nvim/lazy/nvim-noirbuddy",
+        "/home/ia/.local/share/nvim/lazy/plenary.nvim",
+        "/usr/share/nvim/runtime",
+        "/usr/share/nvim/runtime/pack/dist/opt/matchit",
+        "/usr/lib/nvim",
+        "/home/ia/.local/state/nvim/lazy/readme",
+        "/home/ia/.local/share/nvim/lazy/cmp-nvim-lsp/after",
+        "${3rd}/luassert/library"
+    ]
+}
