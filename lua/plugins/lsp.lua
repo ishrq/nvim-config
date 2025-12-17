@@ -25,23 +25,5 @@ return {
       map('n', '[e', function() vim.diagnostic.jump({ count = -1, severity = vim.diagnostic.severity.ERROR }) end, { desc = 'Previous error' })
       map('n', ']e', function() vim.diagnostic.jump({ count = 1, severity = vim.diagnostic.severity.ERROR }) end, { desc = 'Next error' })
     end,
-  },
-  {
-    -- https://github.com/nvimtools/none-ls.nvim
-    'nvimtools/none-ls.nvim',
-    event = { 'BufReadPre', 'BufNewFile' },
-    opts = function()
-      local b = require('null-ls').builtins
-      return {
-        sources = {
-          b.completion.spell,
-          b.diagnostics.fish,
-          b.diagnostics.stylint,
-          b.diagnostics.todo_comments,
-          b.diagnostics.trail_space,
-          b.hover.dictionary,
-        },
-      }
-    end,
-  },
+  }
 }
