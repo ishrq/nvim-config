@@ -15,14 +15,10 @@ return {
 
       require('mason-lspconfig').setup({
         ensure_installed = {
-          'astro', 'cssls', 'clangd', 'denols', 'gopls',
-          'html', 'intelephense', 'jdtls', 'lua_ls', 'marksman',
+          'astro', 'biome', 'clangd', 'gopls',
+          'html', 'jdtls', 'lua_ls', 'marksman',
           'ruff', 'tailwindcss', 'texlab', 'ty',
         },
-      })
-
-      vim.lsp.config('html', {
-        filetypes = { 'html', 'templ', 'astro' },
       })
 
       local map = vim.keymap.set
@@ -30,7 +26,6 @@ return {
       map('n', ']e', function() vim.diagnostic.jump({ count = 1, severity = vim.diagnostic.severity.ERROR }) end, { desc = 'Next error' })
     end,
   },
-
   {
     -- https://github.com/nvimtools/none-ls.nvim
     'nvimtools/none-ls.nvim',
@@ -40,7 +35,6 @@ return {
       return {
         sources = {
           b.completion.spell,
-          b.formatting.prettierd,
           b.diagnostics.fish,
           b.diagnostics.stylint,
           b.diagnostics.todo_comments,
