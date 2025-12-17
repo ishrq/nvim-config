@@ -7,6 +7,7 @@ vim.o.signcolumn     = "yes:1"
 vim.o.statuscolumn   = "%l%s"
 vim.o.scrolloff      = 8
 vim.o.pumheight      = 10
+vim.o.cmdheight      = 0
 
 --WHITESPACE
 vim.o.expandtab   = true
