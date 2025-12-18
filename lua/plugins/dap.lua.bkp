@@ -1,63 +1,55 @@
--- return {
---   -- https://github.com/mfussenegger/nvim-dap
---   {
---     'mfussenegger/nvim-dap',
---     dependencies = {
---       {
---         {
---           -- https://github.com/igorlfs/nvim-dap-view
---           'igorlfs/nvim-dap-view',
---           keys = {
---             { '<leader>bv', function() require('dap-view').toggle() end, { desc = 'Toggle dap-view' } },
---             { '<leader>bV', function() require('dap-view').toggle(true) end, { desc = 'Toggle dap-view!' } }
---           },
---           opts = {},
---         },
---         'theHamsta/nvim-dap-virtual-text', -- https://github.com/theHamsta/nvim-dap-virtual-text
---       },
---     },
---     keys = {
---       {'<leader>bb', function() require('dap').continue() end, desc = 'Debug: Start/Continue',},
---       {'<leader>b1', function() require('dap').step_into() end, desc = 'Debug: Step Into',},
---       {'<leader>b2', function() require('dap').step_over() end, desc = 'Debug: Step Over',},
---       {'<leader>b3', function() require('dap').step_out() end, desc = 'Debug: Step Out',},
---       {'<leader>bp', function() require('dap').toggle_breakpoint() end, desc = 'Debug: Toggle Breakpoint',},
---       {'<leader>bP', function() require('dap').set_breakpoint(vim.fn.input 'Breakpoint condition: ') end, desc = 'Debug: Set Breakpoint',},
---     },
---     config = function ()
---       require('nvim-dap-virtual-text').setup()
---
---       local dap = require('dap')
---
---       -- Firefox Debug Adapter
---
---       dap.adapters.firefox = {
---         type = 'executable',
---         command = 'node',
---         args = { vim.fn.stdpath("data") .. "/mason/packages/firefox-debug-adapter/dist/adapter.bundle.js" },
---       }
---
---       local js_languages = {
---         "javascript",
---         "javascriptreact",
---         "typescript",
---         "typescriptreact",
---       }
---
---       for _, language in ipairs(js_languages) do
---         dap.configurations[language] = {
---           {
---             name = 'Debug with Firefox',
---             type = 'firefox',
---             request = 'launch',
---             reAttach = true,
---             url = 'http://localhost:3000',
---             webRoot = '${workspaceFolder}',
---             firefoxExecutable = '/usr/bin/librewolf'
---           }
---         }
---       end
---
---     end
---   }
--- }
+return {
+  -- https://github.com/mfussenegger/nvim-dap
+  {
+    'mfussenegger/nvim-dap',
+    dependencies = {
+      'theHamsta/nvim-dap-virtual-text', -- https://github.com/theHamsta/nvim-dap-virtual-text
+      'igorlfs/nvim-dap-view', -- https://github.com/igorlfs/nvim-dap-view
+    }
+  },
+  keys = {
+    {'<leader>dv', function() require('dap-view').toggle() end, { desc = 'Toggle dap-view' }},
+    {'<leader>dV', function() require('dap-view').toggle(true) end, { desc = 'Toggle dap-view!' }},
+    {'<leader>db', function() require('dap').continue() end, desc = 'Debug: Start/Continue',},
+    {'<leader>d1', function() require('dap').step_into() end, desc = 'Debug: Step Into',},
+    {'<leader>d2', function() require('dap').step_over() end, desc = 'Debug: Step Over',},
+    {'<leader>d3', function() require('dap').step_out() end, desc = 'Debug: Step Out',},
+    {'<leader>dp', function() require('dap').toggle_breakpoint() end, desc = 'Debug: Toggle Breakpoint',},
+    {'<leader>dP', function() require('dap').set_breakpoint(vim.fn.input 'Breakpoint condition: ') end, desc = 'Debug: Set Breakpoint',},
+  },
+  config = function ()
+    require('nvim-dap-virtual-text').setup()
+
+    -- local dap = require('dap')
+
+    -- Firefox Debug Adapter
+
+    -- dap.adapters.firefox = {
+    --   type = 'executable',
+    --   command = 'node',
+    --   args = { vim.fn.stdpath("data") .. "/mason/packages/firefox-debug-adapter/dist/adapter.bundle.js" },
+    -- }
+    --
+    -- local js_languages = {
+    --   "javascript",
+    --   "javascriptreact",
+    --   "typescript",
+    --   "typescriptreact",
+    -- }
+    --
+    -- for _, language in ipairs(js_languages) do
+    --   dap.configurations[language] = {
+    --     {
+    --       name = 'Debug with Firefox',
+    --       type = 'firefox',
+    --       request = 'launch',
+    --       reAttach = true,
+    --       url = 'http://localhost:3000',
+    --       webRoot = '${workspaceFolder}',
+    --       firefoxExecutable = '/usr/bin/librewolf'
+    --     }
+    --   }
+    -- end
+
+  end
+}
