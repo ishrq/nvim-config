@@ -133,9 +133,3 @@ autocmd('BufNewFile', {
   pattern = {'style.css', 'reset.css'},
   command = '0r ~/.config/nvim/skeletons/css-reset.css'
 })
-
---robots.txt
-autocmd('BufNewFile', {
-  pattern = 'robots.txt',
-  command = '0r ~/.config/nvim/skeletons/robots.txt'
-})
