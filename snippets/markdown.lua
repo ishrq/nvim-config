@@ -16,7 +16,7 @@ return {
       "---\n\n",
       "$0"
     },
-    desc = "Blog meta for ishrq.com"
+    desc = "Blog meta for personal site"
   },
   {
     prefix = 'note',
@@ -26,7 +26,7 @@ return {
       '\t\t$1',
       '</div>$0',
     },
-    desc = 'Note block for ishrq.com'
+    desc = 'Note block for personal site'
   },
   {
     prefix = 'pn',
