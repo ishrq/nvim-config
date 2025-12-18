@@ -63,11 +63,9 @@ local nxo = {'n', 'x', 'o'}
 
 -- Convert to pdf, requires pandoc & pdf-engine (wkhtmltopdf)
 -- https://nanotipsforvim.prose.sh/export-markdown-as-pdf
-map("n", "<C-e>", ":!pandoc %:p --output=%:t:r.pdf --pdf-engine=wkhtmltopdf<CR>:!open %:t:r.pdf<CR><CR>", {buffer = true})
+map("n", "<C-E>", ":!pandoc %:p --output=%:t:r.pdf --pdf-engine=wkhtmltopdf<CR>:!open %:t:r.pdf<CR><CR>", {buffer = true})
 
 -- Custom textobjects
-map(nxo, ']d', "<Cmd>lua MiniAi.move_cursor('left', 'i', 'd')<CR>", {desc='Next Date'})
-map(nxo, '[d', "<Cmd>lua MiniAi.move_cursor('left', 'i', 'd', {search_method='prev'})<CR>", {desc='Previous Date'})
 map(nxo, ']f', "<Cmd>lua MiniAi.move_cursor('left', 'i', 'f')<CR>", {desc='Next Footnote'})
 map(nxo, '[f', "<Cmd>lua MiniAi.move_cursor('left', 'i', 'f', {search_method='prev'})<CR>", {desc='Previous Footnote'})
 map(nxo, ']u', "<Cmd>lua MiniAi.move_cursor('left', 'i', 'u')<CR>", {desc='Next URL'})
