@@ -1,10 +1,4 @@
 return{
-  -- https://github.com/tzachar/highlight-undo.nvim
-  {
-    'tzachar/highlight-undo.nvim',
-    lazy = true,
-    config = true
-  },
   -- https://github.com/NvChad/nvim-colorizer.lua
   {
     'NvChad/nvim-colorizer.lua',
@@ -18,11 +12,5 @@ return{
         }
       }
     end
-  },
-  -- https://github.com/rafamadriz/friendly-snippets
-  {
-    'rafamadriz/friendly-snippets',
-    event = 'InsertEnter',
-    lazy = true,
-  },
+  }
 }
