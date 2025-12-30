@@ -31,6 +31,10 @@ vim.b.minisurround_config = {
       input = { '%~().-()%~' },
       output = { left = '~', right = '~' },
     },
+    l = {
+      input = { '%[[().-()%]]' },
+      output = { left = '[[', right = ']]' },
+    },
     c = {
       input = { '%`().-()%`' },
       output = { left = '`', right = '`' },
