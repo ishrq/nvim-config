@@ -45,6 +45,8 @@ map('i', ';', ';<C-g>u')
 
 -- Explorer, tabs, windows, frequent files
 map('n', '\\c', ":tab drop ~/RESOURCES/Backlog/capture.txt<CR>", { desc = 'Open capture.txt' })
+map('n', '\\w', ":tab drop ~/RESOURCES/Commonplace/words.txt<CR>", { desc = 'Open words.txt' })
+map('n', '\\q', ":tab drop ~/RESOURCES/Commonplace/quotes.txt<CR>", { desc = 'Open quotes.txt' })
 
 -- Smart `dd` (don't yank blank lines)
 -- https://nanotipsforvim.prose.sh/keeping-your-register-clean-from-dd
