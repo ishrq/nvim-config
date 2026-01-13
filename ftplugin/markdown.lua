@@ -44,12 +44,12 @@ vim.b.minisurround_config = {
       output = { left = '```\n', right = '\n```' },
     },
     m = {
-      input = { '%`%$ ().-() %$%`' },
-      output = { left = '`$ ', right = ' $`' },
+      input = { '%$().-()%$' },
+      output = { left = '$', right = '$' },
     },
     M = {
-      input = { '%`%\\%[ ().-() %\\%]%`' },
-      output = { left = '`\\[ ', right = ' \\]`' },
+      input = { '%$$\n().-()\n%$$' },
+      output = { left = '$$\n', right = '\n$$' },
     },
     t = {
       input = { '%#().-()' },
