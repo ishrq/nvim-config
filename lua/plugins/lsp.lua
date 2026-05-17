@@ -15,8 +15,9 @@ return {
 
       require('mason-lspconfig').setup({
         ensure_installed = {
-          'astro', 'biome', 'clangd', 'gopls',
+          'astro', 'clangd', 'gopls',
           'html', 'jdtls', 'lua_ls', 'marksman',
+          'oxlint', 'oxfmt',
           'ruff', 'tailwindcss', 'texlab', 'ty',
         },
       })
