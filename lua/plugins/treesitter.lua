@@ -5,14 +5,14 @@ return {
   branch = "main",
   build = ":TSUpdate",
   config = function()
-    -- require'nvim-treesitter'.install({
-    --   "astro", "bash", "c", "cpp", "css", "dockerfile",
-    --   "fish", "git_rebase", "gitattributes", "gitcommit",
-    --   "go", "html", "java", "javascript", "json", "lua",
-    --   "latex", "make", "markdown", "markdown_inline",
-    --   "perl", "php", "python", "rust", "sql", "toml",
-    --   "tsx", "typescript", "yaml",
-    -- })
+    require'nvim-treesitter'.install({
+      "astro", "bash", "c", "cpp", "css", "dockerfile",
+      "fish", "git_rebase", "gitattributes", "gitcommit",
+      "go", "html", "java", "javascript", "json", "lua",
+      "latex", "make", "markdown", "markdown_inline",
+      "perl", "php", "python", "rust", "sql", "toml",
+      "tsx", "typescript", "yaml",
+    })
 
     local group = vim.api.nvim_create_augroup('TreesitterSetup', { clear = true })
 
