@@ -14,6 +14,7 @@ return {
       require('mini.pairs').setup()
       require('mini.pick').setup()
       require('mini.splitjoin').setup()
+      require('mini.starter').setup()
       require('mini.statusline').setup()
       require('mini.surround').setup()
       require('mini.trailspace').setup()
